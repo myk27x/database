@@ -1,14 +1,12 @@
-# The main loop of the application should show a menu of options to the user to include at least: Add a person, Search for a person, Delete a person
-# HINT: Show the list of options and allow the user to enter A for Add, S for Search and D for Delete
-
 def run_database
+  iyPeeps = [ ]
+  while true
   puts "Welcome to the 'IronYard Database' where all your data are belong to us!"
   gets
   puts "What would you like to do today?"
   puts "You can (A)dd a person, (S)earch for a person, or (D)elete a person."
   action = gets.chomp.upcase
   case
-    # When adding a person, prompt if the person is an employee or student and create the right type of person
   when action == "A"
     puts "Ok. Are we adding an (E)mployee or a (S)tudent?"
     type = gets.chomp.upcase
@@ -17,6 +15,7 @@ def run_database
       puts "What is our new employee's name?"
       name = gets.chomp.capitalize
       @name = name
+      iyPeeps << name
       puts "What is #{name}'s phone number?"
       phone = gets.chomp
       puts "What is #{name}'s address?"
@@ -40,12 +39,13 @@ def run_database
       p @name.date_hired
       p @name.slack
       p @name.git
-      exit
+      puts iyPeeps
     elsif type == "S"
       puts "Fresh blood... excellent..."
       puts "What is our new student's name?"
       name = gets.chomp.capitalize
       @name = name
+      iyPeeps << name
       puts "What is #{name}'s phone number?"
       phone = gets.chomp
       puts "What is #{name}'s address?"
@@ -60,15 +60,22 @@ def run_database
       p @name.address
       p @name.slack
       p @name.git
-      exit
+      puts iyPeeps
     else ##make loop                                                          TODO
     end
-  when action == "S"
+  when action == "S"  ## make a method for this elsewhere                     TODO
     puts "Who would you like to find?"
+    @search = gets.chomp.capitalize
+    if iyPeeps.include?(@search)
+      puts @search.show
+    else
+      puts "Could not find #{@search}."
+    end
   when action == "D"
-  else ##make loop TODO
-
-  end
+  else
+    exit
+  end ##make loop TODO
+end
 end
 
 module Online
@@ -93,7 +100,6 @@ end
     end
   end
 
-  # For an employee track the following information: Name, Phone number, Address, Position, Salary, Date Hired, Slack Account, Github Account
   class Employee < Person
     include Online
     attr_accessor :position,
@@ -110,7 +116,6 @@ end
 
   end
 
-  # For a student track the following information: Name, Phone number, Address, Slack Account, Github Account
   class Student < Person
     include Online
 

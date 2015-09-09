@@ -4,7 +4,7 @@ class Add
     which = gets.chomp.upcase
     if which == "E"
       type = "Employee"
-      puts "Great... a FuNewGi..." ## make a method for this elsewhere? TODO
+      puts "Great... a FuNewGi..."
       puts "What is our new employee's name?"
       name = gets.chomp.capitalize
       puts "What is #{name}'s phone number?"

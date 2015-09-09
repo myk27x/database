@@ -33,17 +33,16 @@ class Employee < Person
 
   def show
     puts "#{name} has been a #{position} with us since #{date_hired}."
-    puts "Here's all the info I have for #{name}:"
-    puts "------to contact #{name}:"
-    puts "--phone:#{phone}"
-    puts "address:#{address}"
-    puts "--slack:#{slack}"
-    puts "----git:#{git}"
+    puts "-------contact info:"
+    puts "----phone:#{phone}"
+    puts "--address:#{address}"
+    puts "----slack:#{slack}"
+    puts "------git:#{git}"
     puts "----- **EMPLOYER ONLY INFO**"
-    puts "-------:#{type}"
-    puts "--hired:#{date_hired}"
-    puts "--title:#{position}"
-    puts "-salary:#{salary}"
+    puts "---------:#{type}"
+    puts "----hired:#{date_hired}"
+    puts "----title:#{position}"
+    puts "---salary:#{salary}"
   end
 end
 
@@ -60,10 +59,10 @@ class Student < Person
     puts "Here's all the info I have for #{name}:"
     puts "#{name} is a #{type}."
     puts "-------contact info:"
-    puts "--phone:#{phone}"
-    puts "address:#{address}"
-    puts "--slack:#{slack}"
-    puts "----git:#{git}"
+    puts "----phone:#{phone}"
+    puts "--address:#{address}"
+    puts "----slack:#{slack}"
+    puts "------git:#{git}"
   end
 end
 
@@ -71,6 +70,8 @@ class Run
 
   def run_database
     people = []
+    people << Student.new("Michael", 5, 12, "Student", 8, 8)
+    people << Student.new("Mark", 5, 12, "Student", 8, 8)
     puts "Welcome to the 'IronYard Database' where all your data are belong to us!"
     gets
     puts "What would you like to do today?"
@@ -102,19 +103,6 @@ class Run
           git = gets.chomp
           person = Employee.new(name, phone, address, position, type, salary, date_hired, slack, git)
           people << person
-          # ## debug starts
-          # p person
-          # p person.name
-          # p person.phone
-          # p person.address
-          # p person.type
-          # p person.position
-          # p person.salary
-          # p person.date_hired
-          # p person.slack
-          # p person.git
-          # p people
-          # ## debug ends
         elsif which == "S"
           type = "Student"
           puts "Fresh blood... excellent..."
@@ -130,25 +118,29 @@ class Run
           git = gets.chomp
           person = Student.new(name, phone, address, type, slack, git)
           people << person
-          # p person
-          # p person.name
-          # p person.phone
-          # p person.address
-          # p person.type
-          # p person.slack
-          # p person.git
-          # p people
         else
-          puts "Wait, what? let's try that again..."
+          puts "Wait, what? Let's try that again..."
         end
       when action == "S"  ## make a method for this elsewhere                     TODO
         puts "Who would you like to find?"
         find = gets.chomp.capitalize
-        search(people, find)
+        if find.empty?
+          puts "Wait, what? Let's try that again..."
+        else
+          search(people, find)
+        end
       when action == "D"
+        puts "Oooh... looks like someone got fired... we'll talk later..."
+        puts "In the meantime... who are we removing from my cluttered system?"
+        delete = gets.chomp.capitalize
+        if delete.empty?
+          puts "Wait, what? Let's try that again..."
+        else
+          remove(people, delete)
+        end
       else
-        exit
-      end ##make loop TODO
+        puts "Wait, what? Let's try that again..."
+      end
     end
   end
 
@@ -161,22 +153,19 @@ class Run
     end
     puts "I'm sorry, I can't find #{find}. Are you sure you didn't want to add them?"
   end
-end
 
+  def remove(people, delete)
+    people.each do |person|
+      if person.name == delete
+        people.delete(person)
+        puts "Ok, say 'goodbye' to what's-their-name! LOLOLOL"
+        p people
+        return
+      end
+    end
+    puts "Well, I can't find \"#{delete}\" so the problem just fixed itself... I guess..."
+  end
+end
 
 run = Run.new
 run.run_database
-# When searching for a person, prompt for the name and search for an exact match
-# If the person is found, show all their relevant information.
-
-# Show the information in a nice presentation.
-
-# Employees should show, via a method, Has been a PPPP for at least YYYY years where PPPP is their position and YYYY is how many years they have held that position.
-
-# If a person is not found, inform the user
-
-# When deleting a person, prompt for the name and search for an exact match. If found, delete the person, otherwise tell the user there wasn't a match.
-
-# Requirement: Your system must keep a single array holding all of the people.
-
-# Hint: Use classes, inheritance, and maybe even modules to your advantage

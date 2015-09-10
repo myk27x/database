@@ -7,6 +7,12 @@ class Add
       puts "Great... a FuNewGi..."
       puts "What is our new employee's name?"
       name = gets.chomp.capitalize
+      people.each do |person|
+        if person.name == name
+          puts "I already have #{name} in here."
+          return
+        end
+      end
       puts "What is #{name}'s phone number?"
       phone = gets.chomp
       puts "What is #{name}'s address?"
@@ -28,6 +34,12 @@ class Add
       puts "Fresh blood... excellent..."
       puts "What is our new student's name?"
       name = gets.chomp.capitalize
+      people.each do |person|
+        if person.name == name
+          puts "I already have #{name} in here."
+          return
+        end
+      end
       puts "What is #{name}'s phone number?"
       phone = gets.chomp
       puts "What is #{name}'s address?"

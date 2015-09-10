@@ -9,10 +9,10 @@ class Student < Person
   def show
     puts "Here's all the info I have for #{name}:"
     puts "#{name} is a #{type}."
-    puts "-------contact info:"
-    puts "----phone:#{phone}"
-    puts "--address:#{address}"
-    puts "----slack:#{slack}"
-    puts "------git:#{git}"
+    puts "-contact info:"
+    puts "--------phone:#{phone}"
+    puts "------address:#{address}"
+    puts "--------slack:#{slack}"
+    puts "----------git:#{git}"
   end
 end

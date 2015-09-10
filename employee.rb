@@ -12,15 +12,15 @@ class Employee < Person
 
   def show
     puts "#{name} has been a #{position} with us since #{date_hired}."
-    puts "-------contact info:"
-    puts "----phone:#{phone}"
-    puts "--address:#{address}"
-    puts "----slack:#{slack}"
-    puts "------git:#{git}"
-    puts "----- **EMPLOYER ONLY INFO**"
-    puts "---------:#{type}"
-    puts "----hired:#{date_hired}"
-    puts "----title:#{position}"
-    puts "---salary:#{salary}"
+    puts "-contact info:"
+    puts "--------phone:#{phone}"
+    puts "------address:#{address}"
+    puts "--------slack:#{slack}"
+    puts "----------git:#{git}"
+    puts "------ **EMPLOYER ONLY INFO**"
+    puts "-------------:#{type}"
+    puts "--------hired:#{date_hired}"
+    puts "--------title:#{position}"
+    puts "-------salary:#{salary}"
   end
 end

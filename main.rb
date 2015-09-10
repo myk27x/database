@@ -6,6 +6,7 @@ require_relative "person"
 require_relative "employee"
 require_relative "student"
 require_relative "run"
+require_relative "list"
 
 run = Run.new
 run.run_database

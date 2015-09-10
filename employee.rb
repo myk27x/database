@@ -2,16 +2,16 @@ class Employee < Person
   include Online
   attr_accessor :position, :salary, :date_hired
 
-  def initialize (name, phone, address, position, type, salary, date_hired, slack, git)
+  def initialize (name, age, phone, address, type, position, salary, date_hired, slack, git)
+    super(name, age, phone, address, type)
     self.position = position
     self.salary = salary
     self.date_hired = date_hired
-    super(name, phone, address, type)
     online(slack, git)
   end
 
   def show
-    puts "#{name} has been a #{position} with us since #{date_hired}."
+    puts "#{name} is a #{age} year old #{position} who has been with us since #{date_hired}."
     puts "-contact info:"
     puts "--------phone:#{phone}"
     puts "------address:#{address}"

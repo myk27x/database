@@ -1,6 +1,6 @@
 class Add
   def add(people)
-    puts "Ok. Are we adding an (E)mployee or a (S)tudent?"
+    puts "Are we adding an (E)mployee or a (S)tudent?"
     which = gets.chomp.upcase
     if which == "E"
       type = "Employee"
@@ -13,6 +13,8 @@ class Add
           return
         end
       end
+      puts "... and how old is #{name}?"
+      age = gets.chomp
       puts "What is #{name}'s phone number?"
       phone = gets.chomp
       puts "What is #{name}'s address?"
@@ -27,7 +29,7 @@ class Add
       slack = gets.chomp
       puts "What is #{name}'s GitHub Account username?"
       git = gets.chomp
-      person = Employee.new(name, phone, address, position, type, salary, date_hired, slack, git)
+      person = Employee.new(name, age, phone, address, type, position, salary, date_hired, slack, git)
       people << person
     elsif which == "S"
       type = "Student"
@@ -40,6 +42,8 @@ class Add
           return
         end
       end
+      puts "... and how old is #{name}?"
+      age = gets.chomp
       puts "What is #{name}'s phone number?"
       phone = gets.chomp
       puts "What is #{name}'s address?"
@@ -48,7 +52,7 @@ class Add
       slack = gets.chomp
       puts "What is #{name}'s GitHub Account username?"
       git = gets.chomp
-      person = Student.new(name, phone, address, type, slack, git)
+      person = Student.new(name, age, phone, address, type, slack, git)
       people << person
     else
       puts "Wait, what? Let's try that again..."
